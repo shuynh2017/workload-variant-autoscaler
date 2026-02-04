@@ -109,7 +109,7 @@ The test sends load that resembles a step function. We specify such a load gener
 
     We observe that as the the load increases, due to increased pressure on kv cache, the number of requests waiting jump from 0 to 150. Recall that the configured average queue threshold value is 3. Applying HPA scaling formula
 
-    $$ \lceil CurrentReplicas \times \frac{CurrentMetricValue}{TargetValue} \rceil = \lceil 1 \times \frac{150}{3} = 50$$
+    $$\lceil CurrentReplicas \times \frac{CurrentMetricValue}{TargetValue} \rceil = \lceil 1 \times \frac{150}{3} = 50$$
 
     provides the number of desired replicas as 50. Since the maximum number of replicas configured is 10, we only see a scale up to 10 replicas. Additionally, HPA should scale up 1 pod per minute as its configuration.
 
