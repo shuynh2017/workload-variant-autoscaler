@@ -71,6 +71,11 @@ export WVA_PROJECT=$PWD
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
 
+# NB: The following helm upgrade command updates the global prometheus-adapter 
+# configmap. If this is a shared cluster then you might want to get the current
+# settings, manually append the values in config/samples/prometheus-adapter-values-ocp.yaml
+# then run helm upgrade with the appended values. Here's an example how to get the current
+# values: kubectl get configmap prometheus-adapter -n $MON_NS -o yaml
 helm upgrade -i prometheus-adapter prometheus-community/prometheus-adapter \
   -n $MON_NS \
   -f config/samples/prometheus-adapter-values-ocp.yaml
